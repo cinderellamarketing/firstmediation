@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>First Mediation · Proposal · Time Assist</title>
+<style>
+:root{
+  --primary:#662D91; --dark:#3C1858; --light:#F0E6F6;
+  --ink:#1f1a24; --muted:#5c5566; --line:#e7dff0;
+  --bg:#faf8fc; --white:#ffffff;
+  --warn-bg:#fff4e6; --warn-line:#f0b060;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,var(--primary),var(--dark));color:#fff;padding:44px 0 38px}
+header h1{margin:0 0 10px;font-size:31px;line-height:1.22;font-weight:700}
+header p.lede{margin:0;font-size:17px;opacity:.94;max-width:62ch}
+.meta{margin-top:18px;font-size:14px;opacity:.85}
+nav.tabs{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+nav.tabs .wrap{display:flex;gap:4px}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:15px 18px;
+  font-size:15px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+.tab[aria-selected="true"]{color:var(--primary);border-bottom-color:var(--primary)}
+.tab:focus-visible{outline:2px solid var(--primary);outline-offset:-2px}
+main{padding:30px 0 70px}
+.panel{display:none}
+.panel.active{display:block}
+.intro{margin:0 0 18px;color:var(--muted);font-size:15px}
+details.sec{background:var(--white);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+details.sec>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;gap:13px;font-weight:600;font-size:16.5px}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary:focus-visible{outline:2px solid var(--primary);outline-offset:-2px}
+.n{background:var(--primary);color:#fff;width:27px;height:27px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13.5px;flex:0 0 27px}
+.chev{margin-left:auto;color:var(--primary);transition:transform .18s;font-size:13px}
+details.sec[open]>summary .chev{transform:rotate(90deg)}
+.body{padding:2px 18px 20px 58px}
+.body p{margin:0 0 14px}
+.body ul{margin:0 0 14px;padding-left:20px}
+.body li{margin-bottom:7px}
+h3.mini{margin:22px 0 9px;font-size:15px;color:var(--dark)}
+.tblwrap{overflow-x:auto;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;margin:0 0 16px;font-size:14.5px}
+.tblwrap table{margin:0}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--light);font-weight:600;color:var(--dark)}
+td.num,th.num{text-align:right;white-space:nowrap}
+.box{border-radius:8px;padding:13px 16px;margin:0 0 16px;font-size:15px}
+.box p:last-child{margin-bottom:0}
+.tip{background:var(--light);border-left:4px solid var(--primary)}
+.warn{background:var(--warn-bg);border-left:4px solid var(--warn-line)}
+.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:0 0 18px}
+.pcard{background:var(--white);border:2px solid var(--line);border-radius:10px;padding:18px}
+.pcard.lead{border-color:var(--primary)}
+.pcard .lab{font-size:14px;color:var(--muted);margin-bottom:5px}
+.pcard .fig{font-size:26px;font-weight:700;color:var(--primary);line-height:1.2}
+.pcard .sub{font-size:13.5px;color:var(--muted);margin-top:5px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 18px}
+.stat{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.stat .fig{font-size:24px;font-weight:700;color:var(--primary);line-height:1.2}
+.stat .lab{font-size:13.5px;color:var(--muted);margin-top:3px}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:14px;background:var(--white)}
+@media (max-width:620px){
+  header h1{font-size:25px}
+  .body{padding:2px 16px 18px 16px}
+  .tab{padding:13px 12px;font-size:14px}
+}
+@media print{
+  nav.tabs{display:none}
+  .panel{display:block !important}
+  details.sec{break-inside:avoid}
+  details.sec>summary .chev{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Every client, booking and payment in one place</h1>
+    <p class="lede">Capsule already runs your client journey. Over three months it takes over the spreadsheets too, so the whole team works from one account and you can see every case at once.</p>
+    <div class="meta">Prepared for Lesa Clarke &nbsp;·&nbsp; First Mediation</div>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Sections">
+  <div class="wrap">
+    <button class="tab" id="tab-proposal" role="tab" aria-selected="true" aria-controls="panel-proposal">Proposal</button>
+    <button class="tab" id="tab-account" role="tab" aria-selected="false" aria-controls="panel-account">Your account</button>
+    <button class="tab" id="tab-call" role="tab" aria-selected="false" aria-controls="panel-call">Our call</button>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+
+  <section class="panel active" id="panel-proposal" role="tabpanel" aria-labelledby="tab-proposal">
+
+    <details class="sec" open>
+      <summary><span class="n">1</span> Where things stand today<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Capsule already runs the business. Every enquiry becomes a case, your 35 tracks set out each step from first call to final session, and the team completes around 70 tasks every weekday, more than 100 on the busiest days. Very little slips: of almost 300 open tasks, fewer than 30 are overdue.</p>
+        <p>What Capsule doesn't do yet is give you the overview. Bookings, vouchers, legal aid and Global Payments are kept on spreadsheets, and several of your tracks tell the team to copy details across to them. Capsule shows one client at a time, and the spreadsheets are the only place you see everyone at once.</p>
+        <p>The whole team shares one login, and task categories stand in for people. So Capsule can't show who did what, or which mediator is working with which client.</p>
+        <div class="box tip">
+          <p>You were clear that the time goes on the spreadsheets, not on winning clients. That is what this proposal sets out to remove.</p>
+        </div>
+        <p>The figures come from a read-only review of your account. The headlines are on the <strong>Your account</strong> tab.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">2</span> What we are proposing<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Three months of work, with one theme each month. Your tracks stay at the heart of it, because they work. Capsule takes over what the spreadsheets do now, and QuickBooks stays the accounts.</p>
+        <div class="tblwrap">
+          <table>
+            <tr><th>Month</th><th>Focus</th><th>By the end of it</th></tr>
+            <tr><td>One</td><td>A clean account, set up for the team</td><td>A login each, one board showing every case, the mediator recorded on every case, finished cases closed, old records cleared with your sign-off, and a deletion routine in place</td></tr>
+            <tr><td>Two</td><td>The spreadsheets come into Capsule</td><td>Bookings, vouchers, legal aid and payments recorded on the case, the tracks updated to match, and a list for each that replaces its spreadsheet</td></tr>
+            <tr><td>Three</td><td>Referrers, enquiries and handover</td><td>Referrers on their own board with newsletters for each group, the website MIAM form feeding Capsule, and the team trained</td></tr>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">3</span> Month one: a clean account, set up for your team<span class="chev">▶</span></summary>
+      <div class="body">
+        <p><strong>A login each.</strong> Everyone who works in Capsule gets their own login. Tasks are assigned to a person rather than a coloured category, and Capsule records who completed each one. Task categories go back to describing the kind of task. We'll agree on the 14th who needs a login, including whether mediators tick off their own tasks.</p>
+        <p><strong>One board for every case.</strong> Cases move across a board in stages, from enquiry through each MIAM and mediation to closed, so every live case is on one screen. The board replaces the lettered status tags, which have drifted over time: some cases now carry more than one.</p>
+        <p><strong>The mediator on every case.</strong> At the moment a mediator only appears as a task category. A mediator field on each case is what the workload and upsell figures in month two depend on.</p>
+        <p>The details taken at enquiry, such as how the client found you and the type of dispute, are asked in two places at the moment, on the client and on the case. They move to one place, the case, so they are filled in once and can be reported on.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">4</span> Month one: closing finished cases and clearing old records<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Mediation is without prejudice, and you tell clients their information doesn't stay with you. Cases have only been closed in Capsule since January, and nothing has been deleted, so the account holds a lot of finished work. Most open cases have no task left on them, which usually means the work is done but the case was never closed.</p>
+        <p>The clean-up runs in this order, and nothing is deleted until you have approved the list:</p>
+        <ul>
+          <li>Go through the open cases with no task left, and close the finished ones</li>
+          <li>Agree the rule with you: how long after a case ends its data goes</li>
+          <li>Produce the list of every case and client past that point, for you to check and sign off</li>
+          <li>Delete what you have signed off: the case and the people on it, since case and track names sometimes carry client details too</li>
+        </ul>
+        <p>Then the routine keeps it that way. The last step on each case track marks the case ready for deletion once the client has paid and the mediator's invoice is settled. A saved list shows everything past that point, so deleting becomes a regular task rather than an occasional clear-out. Monthly totals are kept without names, so the mediator and upsell figures survive the deletion.</p>
+        <p>QuickBooks keeps its own copy of names and addresses for invoicing. What stays there is for Yvonne and your accountant to decide.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">5</span> Month two: the spreadsheets come into Capsule<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Your tracks already follow the spreadsheets closely. Seven track steps tell the team to add a booking, log a payment or record legal aid progress on a spreadsheet. Each one is rewritten to update the case instead, so the team keeps working through the tracks they know.</p>
+        <div class="tblwrap">
+          <table>
+            <tr><th>Spreadsheet</th><th>What it becomes</th></tr>
+            <tr><td>Mediator bookings and fees</td><td>Each booking recorded on the case, with the mediator, MIAM or mediation, the length, the fee and whether it has been paid. A list for each mediator replaces their tab, so checking an invoice means opening one list for the month</td></tr>
+            <tr><td>Vouchers</td><td>The Voucher Scheme track already follows the Opia steps. The reference, approval, invoice and payment dates are recorded on the case, and one list shows every claim not yet paid</td></tr>
+            <tr><td>Legal aid</td><td>The UC Legal Aid track runs to 13 steps. The yes and no columns become tick boxes on the case, and one list shows what is still waiting on the supplier, the client or the mediator</td></tr>
+            <tr><td>Global Payments</td><td>Link sent, invoice number, amount, what it is for and receipt received, recorded against the booking, payment plans included</td></tr>
+          </table>
+        </div>
+        <p>Red and green become a filter: paid or not paid, across every client at once. The exact fields are settled with Stacey and Yvonne at the start of the month, working from the column headings of each spreadsheet. The rule throughout is that each piece of information is entered once.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">6</span> Seeing the whole business<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Once the mediator and the bookings are on the case, the questions you asked on the call can be answered from Capsule:</p>
+        <ul>
+          <li>Which mediator is doing the most work, month by month</li>
+          <li>Which clients go on from the MIAM to further sessions, mediator by mediator, so you can see who is upselling</li>
+          <li>Money due in from clients and voucher claims, and what is owed to each mediator</li>
+          <li>Where every live case has reached, from the board</li>
+        </ul>
+        <p>Some of these come from Capsule's reports and dashboards, and others from saved lists you can open at any time. Anything that needs a calculation across them, such as the margin on each mediator's work, comes from an export.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">7</span> Month three: referrers, enquiries and handover<span class="chev">▶</span></summary>
+      <div class="body">
+        <p><strong>Referrers on their own board.</strong> Prospecting already runs in Capsule, through the solicitor tracks, but as cases, so it sits in the same list as your clients. It moves to a board of its own. Each firm is recorded as an organisation with its solicitors under it, tagged as tier 1, 2 or 3 or as a prospect. Citizens Advice, psychologists and other referrers get their own tags. The contacts in the separate marketing account come across too.</p>
+        <p><strong>Newsletters by group.</strong> Transpond, Capsule's email add-on, sends to the same contacts: one newsletter for solicitors, something different for Citizens Advice, and so on. We set up the first template with you. Transpond can also schedule your LinkedIn posts.</p>
+        <p>A MIAM request form on your website creates the enquiry in Capsule, ready for the team to call back and book, so nobody types it in again. How it connects depends on what your website is built on, so we will tell your web designers exactly what to use. Training enquiries can follow the same route when you are ready.</p>
+        <p>Every session is recorded and written up on your own guide page. Stacey, Danielle and Yvonne, and anyone who joins later, learn one system rather than Capsule plus the spreadsheets.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">8</span> What it costs<span class="chev">▶</span></summary>
+      <div class="body">
+        <h3 class="mini">The work</h3>
+        <div class="price">
+          <div class="pcard lead">
+            <div class="lab">Three-month implementation</div>
+            <div class="fig">£2,700</div>
+            <div class="sub">Payable at £900 a month. Covers everything in months one to three, the clean-up included</div>
+          </div>
+        </div>
+        <p>This is the fee for the work. The software is paid for separately, directly to the providers.</p>
+        <h3 class="mini">The tools</h3>
+        <div class="tblwrap">
+          <table>
+            <tr><th>Tool</th><th>Indicative cost</th></tr>
+            <tr><td>Capsule CRM, Growth plan</td><td>£27 per user per month, billed annually. For example, four users is £108 a month. Growth allows a second board for referrers, and adds reporting dashboards, workflow automations and team access controls</td></tr>
+            <tr><td>Transpond</td><td>Capsule's marketing add-on, from £7 a month</td></tr>
+          </table>
+        </div>
+        <div class="box tip">
+          <p>Capsule is priced per user, so the cost depends on how many people need a login. One account also means one subscription: the marketing account and the older free account can be closed once everything has moved across.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">9</span> How it runs<span class="chev">▶</span></summary>
+      <div class="body">
+        <div class="tblwrap">
+          <table>
+            <tr><th>When</th><th>What happens</th></tr>
+            <tr><td>Month one</td><td>A kick-off with you, Stacey and Yvonne. Logins, the case board and the mediator field set up, and the team trained on them. Finished cases closed, then the clean-up list prepared for your sign-off before anything is deleted</td></tr>
+            <tr><td>Month two</td><td>The spreadsheets rebuilt in Capsule one at a time, with the matching track steps updated, each followed by a short session showing the team how to use it</td></tr>
+            <tr><td>Month three</td><td>Referrers and Transpond, the website form, then a final review of everything with the team</td></tr>
+          </table>
+        </div>
+        <p>No spreadsheet is retired until the team is using what replaces it. Every session is recorded and added to your guide page, so anyone can go back to it.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">10</span> What is not included<span class="chev">▶</span></summary>
+      <div class="body">
+        <ul>
+          <li><strong>The accounts.</strong> QuickBooks stays the accounting system. Capsule does not take payments, raise invoices or reconcile the bank.</li>
+          <li><strong>The mediators' calendars.</strong> The Outlook and Gmail calendars stay as they are. Letting clients pick their own slot needs a booking tool tied to those calendars, which is a separate piece of work.</li>
+          <li><strong>Building the website form.</strong> Your web designers build it. We tell them what to use and connect it to Capsule.</li>
+          <li><strong>Marketing the training company.</strong> Its enquiries can come into Capsule, but campaigns for it are not part of these three months.</li>
+          <li><strong>The subscriptions.</strong> Capsule and Transpond are paid directly to them.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">11</span> Next steps<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>We will go through this together on Wednesday 14 October at 1pm.</p>
+        <h3 class="mini">Useful to have before then</h3>
+        <ul>
+          <li>Who works in Capsule day to day, and whether any mediators tick off their own tasks</li>
+          <li>Which Capsule plan you are on, from the billing page in your account settings</li>
+          <li>A first view on how long after a case ends its data should go</li>
+          <li>The column headings from each spreadsheet. Headings only, no client details</li>
+          <li>Access to the marketing account, and who built your website</li>
+        </ul>
+      </div>
+    </details>
+
+  </section>
+
+  <section class="panel" id="panel-account" role="tabpanel" aria-labelledby="tab-account">
+
+    <p class="intro">We reviewed your main Capsule account on 9 October 2026 with read-only access. We counted what is in it and looked at how it is set up. We did not open or copy any client's details.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="fig">71</div><div class="lab">Tasks completed each weekday, on average over 90 days</div></div>
+      <div class="stat"><div class="fig">83%</div><div class="lab">Of those tasks come from your tracks</div></div>
+      <div class="stat"><div class="fig">29 of 297</div><div class="lab">Open tasks overdue, none by more than a month</div></div>
+      <div class="stat"><div class="fig">35</div><div class="lab">Tracks, with 132 steps between them</div></div>
+      <div class="stat"><div class="fig">587</div><div class="lab">Cases open in Capsule</div></div>
+      <div class="stat"><div class="fig">1</div><div class="lab">Login, shared by the whole team</div></div>
+    </div>
+
+    <details class="sec" open>
+      <summary><span class="n">1</span> What is working<span class="chev">▶</span></summary>
+      <div class="body">
+        <p><strong>The tracks.</strong> They cover the whole client journey: the enquiry, each client's MIAM, the mediation itself, vouchers, legal aid and court forms. Over the last 90 days the team completed almost 5,000 tasks, and more than four in five came straight from a track.</p>
+        <p><strong>The task list is under control.</strong> Of 297 open tasks, 29 are overdue and none by more than a month. At this volume that is a well-run list.</p>
+        <p>Cases are now being closed as well. That started in January, and around 60 a month have been closed since.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">2</span> What gets in the way<span class="chev">▶</span></summary>
+      <div class="body">
+        <ul>
+          <li><strong>One login.</strong> Every task, open or done, is recorded against the same user, so Capsule can't show who did what. Task categories named after people stand in for logins instead.</li>
+          <li><strong>No mediator on the case.</strong> There is no field for it. A mediator only appears as a task category.</li>
+          <li><strong>The spreadsheets are written into the tracks.</strong> Seven track steps tell the team to copy details to a spreadsheet.</li>
+          <li><strong>No overview of cases.</strong> There is no board. Status is kept in lettered tags. Only two are used much, and some cases carry more than one.</li>
+          <li><strong>Intake details in two places.</strong> How the client found you is asked on both the client and the case, and around a third of cases have none of these details filled in.</li>
+          <li><strong>Prospecting mixed in with clients.</strong> Solicitor prospecting runs as cases, so it shares a list with client work. The tier 1, 2 and 3 split isn't recorded in Capsule.</li>
+          <li><strong>An unused sales pipeline.</strong> It holds 10 opportunities, none touched since July 2025. You told us you don't need one.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">3</span> Cases and records to review<span class="chev">▶</span></summary>
+      <div class="body">
+        <p>Of the 587 open cases, 440 have no task left on them and 318 are more than a year old. Most of these are probably finished but never closed. Most of the 4,632 contacts in the account aren't linked to a live case.</p>
+        <p>This is what the month one clean-up works through. We will go through the detail with you on the call, and nothing is deleted without your sign-off.</p>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">4</span> Where each finding is dealt with<span class="chev">▶</span></summary>
+      <div class="body">
+        <div class="tblwrap">
+          <table>
+            <tr><th>Finding</th><th>Dealt with in</th></tr>
+            <tr><td>One shared login</td><td>Month one</td></tr>
+            <tr><td>No overview of cases</td><td>Month one: the case board</td></tr>
+            <tr><td>No mediator on the case</td><td>Month one: the mediator field</td></tr>
+            <tr><td>Intake details in two places</td><td>Month one</td></tr>
+            <tr><td>Finished cases still open, old records</td><td>Month one: the clean-up and the deletion routine</td></tr>
+            <tr><td>Spreadsheet steps in the tracks</td><td>Month two</td></tr>
+            <tr><td>Prospecting mixed in with clients</td><td>Month three: the referrer board</td></tr>
+          </table>
+        </div>
+      </div>
+    </details>
+
+  </section>
+
+  <section class="panel" id="panel-call" role="tabpanel" aria-labelledby="tab-call">
+
+    <p class="intro">Our discovery call on 8 October 2026, with Jaanika.</p>
+
+    <details class="sec" open>
+      <summary><span class="n">1</span> What we covered<span class="chev">▶</span></summary>
+      <div class="body">
+        <ul>
+          <li>How Capsule is used today: enquiries, a case for each couple, and the tracks behind the daily tasks</li>
+          <li>The spreadsheets: mediator bookings and fees, vouchers, legal aid and Global Payments</li>
+          <li>The separate marketing account and the referrer groups</li>
+          <li>Mediator workload, and moving clients on from the MIAM to further sessions</li>
+          <li>A booking form on the website for MIAMs and, later, training</li>
+          <li>Who will use the system, and where the business is heading</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="sec">
+      <summary><span class="n">2</span> The points that shaped this proposal<span class="chev">▶</span></summary>
+      <div class="body">
+        <p><strong>The spreadsheets are the priority.</strong> You don't need a sales pipeline. Enquiries come through the Family Mediation Council, the government website and local solicitors, and you convert them yourself. What costs time is copying Capsule's information into spreadsheets in order to see everyone at once.</p>
+        <p><strong>One account, upgraded.</strong> The second account started because marketing follow-ups were swamping client work. A separate board and filtered task views solve that inside one account, and the team gets one place to look.</p>
+        <p><strong>A login each.</strong> The admin team works in Capsule every day and Yvonne looks after the finance side, so separate logins replace the colour coding by shift.</p>
+        <p>The question you most want answered is which mediators turn a MIAM into further sessions. That needs the mediator recorded on every case, which is why it comes first.</p>
+        <p>Deleting matters as much as recording. Mediation is without prejudice, so client data has to go when a case ends, and the setup has to make that routine.</p>
+        <p>The business is growing. More mediators are joining, taking you to nine, a training company has started, and you want to step back from running appointments yourself. The system has to work without you in it every day.</p>
+      </div>
+    </details>
+
+  </section>
+
+  </div>
+</main>
+
+
+<footer>
+  <div class="wrap">Prepared by Time Assist for Lesa Clarke. Any questions before 14 October, email Jaanika at j.okk [at] timeassist.co.uk</div>
+</footer>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){
+        x.setAttribute('aria-selected','false');
+        var p=document.getElementById(x.getAttribute('aria-controls'));
+        if(p){p.classList.remove('active');}
+      });
+      t.setAttribute('aria-selected','true');
+      var panel=document.getElementById(t.getAttribute('aria-controls'));
+      if(panel){panel.classList.add('active');}
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
